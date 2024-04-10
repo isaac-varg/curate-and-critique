@@ -1,0 +1,19 @@
+import { User } from "./user/user"
+import { Image } from "./image"
+import { EntryType } from "./entryType"
+
+model Collection {
+  id        String      @id @default(uuid())
+  userId    String      @map("user_id")
+  name      String
+  imageId   String      @map("image_id")
+  user      User        @relation(fields: [userId], references: [id])
+  createdAt DateTime    @default(now()) @map("created_at")
+  updatedAt DateTime    @default(now()) @map("updated_at")
+  image     Image?      @relation(fields: [imageId], references: [id])
+  EntryType EntryType[]
+
+  @@map("collections")
+}
+
+

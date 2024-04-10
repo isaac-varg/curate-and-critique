@@ -1,0 +1,19 @@
+import {User} from "./user/user"
+import { Collection } from "./collection"
+model Image {
+    id         String       @id @default(uuid())
+    userId     String       @map("user_id")
+    tag        String
+    publicId   String       @map("public_id")
+    assetId    String       @map("asset_id")
+    etag       String
+    url        String
+    width      Int
+    height     Int
+    createdAt  DateTime     @default(now()) @map("created_at")
+    updatedAt  DateTime     @default(now()) @map("updated_at")
+    user       User         @relation(fields: [userId], references: [id])
+    collection Collection[]
+
+    @@map("images")
+}
