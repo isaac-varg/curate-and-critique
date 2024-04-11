@@ -6,7 +6,7 @@ class EntryTypeAction extends PrismaAction {
     super("entryType");
   }
 
-  getCollection = async (collectionId: string) => {
+  getByCollection = async (collectionId: string) => {
     const resonse = await getByCollection(collectionId);
     return resonse;
   };

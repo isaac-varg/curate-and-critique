@@ -6,7 +6,7 @@ type CollectionDashboardProps = {
     name: string;
   };
   searchParams: {
-    id: string;
+    collection_id: string;
   };
 };
 
@@ -18,7 +18,7 @@ const CollectionDashboardPage = ({
   return (
     <div>
       <TitleRow
-        collectionId={searchParams.id}
+        collectionId={searchParams.collection_id}
         title={params.name.charAt(0).toUpperCase() + params.name.slice(1)}
       />
     </div>

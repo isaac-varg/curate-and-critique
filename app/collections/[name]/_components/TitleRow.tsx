@@ -22,7 +22,7 @@ const TitleRow = ({ title, collectionId }: TitleRowProps) => {
   }, [collectionId]);
 
   const handleConfigure = () => {
-    router.push(`${path}/configure?id=${collectionId}`);
+    router.push(`${path}/configure?collection_id=${collectionId}`);
   };
 
   return (

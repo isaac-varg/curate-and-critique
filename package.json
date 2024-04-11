@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "merge": "npx prisma-multischema",
-    "migrate": "npx prisma migrate dev"
+    "migrate": "npx prisma migrate dev",
+    "reset": "npx prisma migrate reset"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^1.5.2",

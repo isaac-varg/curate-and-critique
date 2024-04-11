@@ -4,5 +4,6 @@ export interface EntryType {
     aggregateId?: string
     name: string
     pluralName: string
+    parent?: EntryType
     
 }

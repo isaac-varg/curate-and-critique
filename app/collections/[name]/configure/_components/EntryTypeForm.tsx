@@ -42,11 +42,9 @@ const EntryTypeForm = ({ entryTypes }: EntryTypeFormProps) => {
       collectionId: activeCollectionId,
     };
 
-    console.log(entryTypeData)
-
-    // await entryTypeActions.create(entryTypeData);
-    // await revalidatePage("/collections/[name]/configure");
-    // resetDialogContext()
+    await entryTypeActions.create(entryTypeData);
+    await revalidatePage("/collections/[name]/configure");
+    resetDialogContext()
   });
 
   return (

@@ -10,7 +10,7 @@ const CollectionCard = ({ collection }: { collection: Collection }) => {
   const router = useRouter()
 
   const handleClick = () => {
-    router.push(`/collections/${collection.name.toLowerCase()}?id=${collection.id}`)
+    router.push(`/collections/${collection.name.toLowerCase()}?collection_id=${collection.id}`)
   }
 
   return (
