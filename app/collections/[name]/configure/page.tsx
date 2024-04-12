@@ -9,6 +9,7 @@ import getEntryTypeRelationships from "@/utilities/data/getEntryTypeRelationship
 import { TbArrowNarrowRight } from "react-icons/tb";
 import RelationshipsPanel from "./_components/RelationshipsPanel";
 import EntryTypePanel from "./_components/EntryTypePanel";
+import EntryPropertyForm from "./_components/EntryPropertyForm";
 
 type ConfigureCollectionPageProps = {
   searchParams: {
@@ -32,7 +33,6 @@ const ConfigureCollectionPage = async ({
     collection.id
   ) as EntryType[];
 
-  console.log(entryTypes);
 
   const relationships = getEntryTypeRelationships(entryTypes as any);
 

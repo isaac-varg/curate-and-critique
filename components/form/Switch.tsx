@@ -9,9 +9,11 @@ type FormSwitchFieldProps = {
 };
 
 const FormSwitchField = ({ form, fieldName, label }: FormSwitchFieldProps) => {
+  
+
   return (
     <>
-       <label className="font-Poppins text-neutral-950 text-xl">
+       <label className="font-poppins text-city-900 text-xl">
         {label}
       </label>
       <Controller
@@ -19,13 +21,13 @@ const FormSwitchField = ({ form, fieldName, label }: FormSwitchFieldProps) => {
         name={fieldName}
         render={({ field }) => (
           <Switch.Root
-            className="w-[42px] h-[25px] rounded-full relative border-shutters-100 bg-shutters-100  data-[state=checked]:bg-shutters-500 outline-none cursor-default"
+            className="w-[42px] h-[25px] rounded-full relative border-city-200 bg-city-100  data-[state=checked]:bg-city-500 outline-none cursor-default"
             checked={field.value}
             onCheckedChange={field.onChange}
             defaultChecked={true}
             name={fieldName}
           >
-            <Switch.Thumb className="block w-[21px] h-[21px] bg-white rounded-full shadow-[0_2px_2px] shadow-blackA4 transition-transform duration-100 translate-x-0.5 will-change-transform data-[state=checked]:translate-x-[19px]" />
+            <Switch.Thumb className="block w-[21px] h-[21px] bg-white rounded-full shadow-[0_2px_2px] shadow-city-600 transition-transform duration-100 translate-x-0.5 will-change-transform data-[state=checked]:translate-x-[19px]" />
           </Switch.Root>
         )}
       />

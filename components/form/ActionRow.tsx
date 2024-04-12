@@ -10,7 +10,7 @@ type FormActionRowProps = {
 const FormActionRow = ({ form }: FormActionRowProps) => {
   const { handleSubmit } = form;
   return (
-    <Layout.Row>
+    <Layout.Row justify="end">
       <ActionButton label={"Submit"} buttonType="submit"/>
     </Layout.Row>
   );

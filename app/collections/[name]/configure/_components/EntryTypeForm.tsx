@@ -7,7 +7,6 @@ import { SelectionContext } from "@/context/SelectionContext";
 import useDialog from "@/hooks/useDialog";
 import { EntryType } from "@/types/EntryType";
 import { SelectOption } from "@/types/SelectOption";
-import { SelectItem } from "@radix-ui/react-select";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 

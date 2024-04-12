@@ -1,4 +1,4 @@
-//🧩Don't Edit this file.✨Generated in Tue Apr 09 2024 22:43:54 GMT-0700 (Pacific Daylight Time)✨
+//🧩Don't Edit this file.✨Generated in Thu Apr 11 2024 23:09:38 GMT-0700 (Pacific Daylight Time)✨
 
 generator client {
   provider = "prisma-client-js"
@@ -23,17 +23,28 @@ model Collection {
   @@map("collections")
 }
 
-model EntryType {
-  id           String      @id @default(uuid())
-  name         String
-  pluralName   String?
-  aggregateId  String?     @map("aggregate_id")
-  collectionId String      @map("collection_id")
-  parent       EntryType?  @relation("ParentEntryType", fields: [aggregateId], references: [id])
-  children     EntryType[] @relation("ParentEntryType")
-  collection   Collection  @relation(fields: [collectionId], references: [id])
+model EntryProperty {
+  id          String    @id @default(uuid())
+  name        String
+  required    Boolean
+  // sequence    Int
+  entryTypeId String
+  entryType   EntryType @relation(fields: [entryTypeId], references: [id])
 
-  // entryProperties EntryProperty[]
+  @@map("entry_properties")
+}
+
+model EntryType {
+  id              String          @id @default(uuid())
+  name            String
+  pluralName      String?
+  aggregateId     String?         @map("aggregate_id")
+  collectionId    String          @map("collection_id")
+  parent          EntryType?      @relation("ParentEntryType", fields: [aggregateId], references: [id])
+  children        EntryType[]     @relation("ParentEntryType")
+  collection      Collection      @relation(fields: [collectionId], references: [id])
+  entryProperties EntryProperty[]
+
   @@map("entry_types")
 }
 
