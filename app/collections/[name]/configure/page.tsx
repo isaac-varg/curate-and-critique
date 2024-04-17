@@ -42,8 +42,6 @@ const ConfigureCollectionPage = async ({
 
       <TitleRow title={`${collection.name} Configuration`} />
 
-      {/* <RelationshipsPanel relationships={relationships} /> */}
-
       <div className="grid grid-cols-2 gap-4">
         {entryTypes.map((entryType) => (
           <EntryTypePanel key={entryType.id} entryType={entryType} />

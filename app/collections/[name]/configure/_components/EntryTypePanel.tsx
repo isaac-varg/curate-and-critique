@@ -34,7 +34,7 @@ const EntryTypePanel = ({ entryType }: EntryTypePanelProps) => {
           <ActionButton>
             <RiSettingsLine />
           </ActionButton>
-          <ActionButton onClick={() => showDialog('entryPropertyForm')}>
+          <ActionButton onClick={() => showDialog(`propertyForm_${entryType.name}`)}>
             <TbPlus />
           </ActionButton>
         </div>
