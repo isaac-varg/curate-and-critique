@@ -1,12 +1,15 @@
 import { EntryType } from "./entryType"
+import { EntryData } from "./entryData"
 
 model EntryProperty {
-    id          String    @id @default(uuid())
+    id          String      @id @default(uuid())
     name        String
     required    Boolean
     // sequence    Int
     entryTypeId String
-    entryType   EntryType @relation(fields: [entryTypeId], references: [id])
+    entryType   EntryType   @relation(fields: [entryTypeId], references: [id])
+    entryData   EntryData[]
 
     @@map("entry_properties")
 }
+

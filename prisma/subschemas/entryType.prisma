@@ -1,16 +1,18 @@
 import { Collection } from "./collection"
 import { EntryProperty } from "./entryProperty"
+import { Entry } from "./entry"
 
 model EntryType {
-    id            String          @id @default(uuid())
-    name          String
-    pluralName    String?
-    aggregateId   String?         @map("aggregate_id")
-    collectionId  String          @map("collection_id")
-    parent        EntryType?      @relation("ParentEntryType", fields: [aggregateId], references: [id])
-    children      EntryType[]     @relation("ParentEntryType")
-    collection    Collection      @relation(fields: [collectionId], references: [id])
+    id              String          @id @default(uuid())
+    name            String
+    pluralName      String?
+    aggregateId     String?         @map("aggregate_id")
+    collectionId    String          @map("collection_id")
+    parent          EntryType?      @relation("ParentEntryType", fields: [aggregateId], references: [id])
+    children        EntryType[]     @relation("ParentEntryType")
+    collection      Collection      @relation(fields: [collectionId], references: [id])
     entryProperties EntryProperty[]
+    entries         Entry[]
+
     @@map("entry_types")
 }
-

@@ -1,0 +1,11 @@
+import { Entry } from "./entry"
+import { EntryProperty } from "./entryProperty"
+
+model EntryData {
+    id              String        @id @default(uuid())
+    entryId     String
+    entryPropertyId String
+    value           String
+    entry           Entry         @relation(fields: [entryId], references: [id])
+    entryProperty   EntryProperty @relation(fields: [entryPropertyId], references: [id])
+}

@@ -1,0 +1,12 @@
+import { EntryData } from "./entryData"
+import { EntryType} from "./entryType"
+
+model Entry {
+    id          String      @id @default(uuid())
+    entryTypeId String
+    createdAt   DateTime    @default(now())
+    updatedAt   DateTime    @updatedAt
+    entryData   EntryData[]
+    entryType   EntryType   @relation(fields: [entryTypeId], references: [id])
+}
+
