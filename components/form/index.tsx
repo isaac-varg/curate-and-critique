@@ -1,10 +1,11 @@
-import React from "react";
-import Root from "./Root";
-import Text from "./Text";
-import ActionRow from "./ActionRow";  
-import Switch from "./Switch";
-import FileUpload from "./FileUpload";
-import Select from "./Select";
+import React from 'react';
+import Root from './Root';
+import Text from './Text';
+import ActionRow from './ActionRow';
+import SelectField from './Select';
+import Number from './Number';
+import TextArea from './TextArea';
+
 
 const Form = ({ children }: { children: React.ReactNode }) => (
     <div>{children}</div>
@@ -13,9 +14,9 @@ const Form = ({ children }: { children: React.ReactNode }) => (
 Form.Root = Root;
 Form.Text = Text;
 Form.ActionRow = ActionRow
-Form.Switch = Switch;
-Form.FileUpload = FileUpload;
-Form.Select = Select;
+Form.Select = SelectField
+Form.Number = Number
+Form.TextArea = TextArea
 
 
 export default Form;

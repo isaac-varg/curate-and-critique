@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { UseFormReturn } from "react-hook-form";
+import { UseFormReturn, useForm } from "react-hook-form";
 
 type RootProps = {
   children: React.ReactNode;
@@ -9,9 +9,14 @@ type RootProps = {
 };
 
 const Root = ({ children, form, onSubmit }: RootProps) => {
+
+
+
   return (
     <form onSubmit={form.handleSubmit(onSubmit)}>
-      <div className="flex flex-col gap-y-2">{children}</div>
+      <div className="flex flex-col gap-y-4">
+        {children}
+      </div>
     </form>
   );
 };

@@ -1,19 +1,21 @@
 "use client";
 
-import { Table } from "@tanstack/react-table";
+import { Row, Table } from "@tanstack/react-table";
 import { RxCross2 } from "react-icons/rx";
 import { usePathname, useRouter } from "next/navigation";
 import FacetedFilter from "./FacetFilter";
-import { Filter } from "@/types/Filter";
+import { Filter } from "@/types/filter";
 import DebouncedInput from "../DebouncedInput";
 import useDialog from "@/hooks/useDialog";
 import ActionButton from "../ActionButton";
 
 interface DataTableFilterbarProps<TData> {
   table: Table<TData>;
-  filters: Filter[];
+  filters?: Filter[] | null;
   dialogIdentifier?: string;
   linkPath?: string;
+  actionButtonTitle?: string;
+  onEnter?: (row: any) => any;
 }
 
 export default function FilterBar<TData>({
@@ -21,12 +23,24 @@ export default function FilterBar<TData>({
   filters,
   dialogIdentifier,
   linkPath,
+  actionButtonTitle,
+  onEnter,
 }: DataTableFilterbarProps<TData>) {
   const isFiltered = table.getState().columnFilters.length > 0;
 
   // const path = usePathname();
   // const router = useRouter();
   const { showDialog } = useDialog();
+
+  const handleEnterPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter" && table.getRowModel().rows.length === 1) {
+      if (onEnter) {
+        onEnter(table.getRowModel().rows[0].original);
+      } else {
+        console.log('not implemented yet.')
+      }
+    }
+  };
 
   return (
     <div className="flex items-center justify-between">
@@ -35,35 +49,38 @@ export default function FilterBar<TData>({
           <DebouncedInput
             value={table.getState().globalFilter ?? ""}
             onChange={(value) => table.setGlobalFilter(String(value))}
+            onKeyDown={handleEnterPress}
             placeholder="Search all"
             className="h-10 w-[150px] lg:w-[250px] bg-bay-leaf-100 rounded-lg px-2 lg:px-3 focus:outline-none focus:ring-2 focus:ring-bay-leaf-600 focus:ring-opacity-50 transition-all duration-200 ease-in-out text-bay-leaf-950 font-poppins"
           />
         </div>
 
-        <div className="flex flex-row items-center gap-x-4">
-          {filters.map((filter, index) => (
-            <FacetedFilter
-              key={index}
-              column={table.getColumn(filter.columnName)}
-              title={filter.filterLabel}
-              options={filter.options}
-            />
-          ))}
+        {filters && (
+          <div className="flex flex-row items-center gap-x-4">
+            {filters.map((filter, index) => (
+              <FacetedFilter
+                key={index}
+                column={table.getColumn(filter.columnName)}
+                title={filter.filterLabel}
+                options={filter.options}
+              />
+            ))}
 
-          {isFiltered && (
-            <button
-              onClick={() => table.resetColumnFilters()}
-              className="flex items-center px-2 lg:px-3 font-poppins"
-            >
-              Reset
-              <RxCross2 className="ml-2 h-4 w-4" />
-            </button>
-          )}
-        </div>
+            {isFiltered && (
+              <button
+                onClick={() => table.resetColumnFilters()}
+                className="flex items-center px-2 lg:px-3 font-poppins"
+              >
+                Reset
+                <RxCross2 className="ml-2 h-4 w-4" />
+              </button>
+            )}
+          </div>
+        )}
       </div>
       {dialogIdentifier && (
         <ActionButton
-          label="Add Item"
+          label={actionButtonTitle ?? "Add"}
           onClick={() => showDialog(dialogIdentifier)}
         />
       )}

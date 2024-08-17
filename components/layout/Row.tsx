@@ -9,8 +9,8 @@ type RowProps = {
 const classes = {
   justify: {
     between: "justify-between",
-    start: "justify-start",
     end: "justify-end",
+	start: "justify-start",
   },
   gap: {
     1: "gap-1",

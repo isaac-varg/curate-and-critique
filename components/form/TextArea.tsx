@@ -6,13 +6,13 @@ type TextProps = {
     fieldName: string;
     label: string;
 };
-  const Text = ({ form, required, fieldName, label}: TextProps) => {
+  const TextArea = ({ form, required, fieldName, label}: TextProps) => {
     return (
       <div className='flex flex-col gap-y-1'>
         <label className="font-poppins text-neutral-950 text-xl">
           {label}
         </label>
-        <input
+        <textarea
           {...form.register(fieldName, { required: required })}
           className="px-4 py-4 border-2 border-shutters-100 bg-shutters-100 rounded-lg focus:outline-none focus:ring-0 focus:border-shutters-500 text-xl text-neutral-950"
           placeholder={label}
@@ -22,4 +22,4 @@ type TextProps = {
     );
   };
   
-  export default Text;
+  export default TextArea;
