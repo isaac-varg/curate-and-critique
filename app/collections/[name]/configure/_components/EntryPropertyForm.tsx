@@ -2,11 +2,9 @@ import entryPropertyActions from "@/actions/entryProperties/entryPropertyActions
 import { revalidatePage } from "@/actions/revalidatePage";
 import Dialog from "@/components/dialog";
 import Form from "@/components/form";
-import { DialogContext } from "@/context/DialogContext";
 import useDialog from "@/hooks/useDialog";
 import { EntryProperty } from "@/types/EntryProperty";
 import { EntryType } from "@/types/EntryType";
-import { useContext } from "react";
 import { useForm } from "react-hook-form";
 
 type Inputs = {

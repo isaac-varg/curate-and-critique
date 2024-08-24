@@ -2,6 +2,7 @@
 
 import entryTypeActions from "@/actions/entryTypes/entryTypeActions";
 import { revalidatePage } from "@/actions/revalidatePage";
+import Dialog from "@/components/dialog";
 import Form from "@/components/form";
 import { SelectionContext } from "@/context/SelectionContext";
 import useDialog from "@/hooks/useDialog";
@@ -18,11 +19,12 @@ type Inputs = {
 
 type EntryTypeFormProps = {
   entryTypes: EntryType[];
+  selectedEntryType: EntryType
 };
 
-const EntryTypeForm = ({ entryTypes }: EntryTypeFormProps) => {
+const EditEntryTypeForm = ({ entryTypes, selectedEntryType }: EntryTypeFormProps) => {
   const hasOtherEntryTypes = entryTypes.length > 0;
-  const form = useForm<Inputs>();
+  const form = useForm<Inputs>({ defaultValues: { name: selectedEntryType.name, aggregateId: selectedEntryType.aggregateId, pluralName: selectedEntryType.pluralName } });
   const { activeCollectionId } = useContext(SelectionContext);
   const { resetDialogContext } = useDialog()
 
@@ -30,37 +32,41 @@ const EntryTypeForm = ({ entryTypes }: EntryTypeFormProps) => {
     label: entryType.name,
     value: entryType.id,
   })) as SelectOption[];
-
+  
+  entryTypeSelectOptions.splice(0, 0, {label: 'None', value: ''}) 
 
 
   const handleSubmit = form.handleSubmit(async (data: Inputs) => {
+
     const entryTypeData = {
       name: data.name,
       pluralName: data.pluralName,
-      aggregateId: data.aggregateId,
+      aggregateId: data.aggregateId ? data.aggregateId : null,
       collectionId: activeCollectionId,
     };
 
-    await entryTypeActions.create(entryTypeData);
+    await entryTypeActions.update(entryTypeData);
     await revalidatePage("/collections/[name]/configure");
     resetDialogContext()
   });
 
   return (
-    <Form.Root form={form} onSubmit={handleSubmit}>
-      <Form.Text form={form} label="Name" fieldName="name" required={true} />
-      <Form.Text form={form} label="Pluralized Name" fieldName="pluralName" required />
-      {hasOtherEntryTypes && (
-        <Form.Select
-          form={form}
-          fieldName="aggregateId"
-          label="Parent"
-          options={entryTypeSelectOptions}
-        />
-      )}
-      <Form.ActionRow form={form} />
-    </Form.Root>
+    <Dialog.Root identifier={`entryTypeForm_${selectedEntryType.id}`}>
+      <Form.Root form={form} onSubmit={handleSubmit}>
+        <Form.Text form={form} label="Name" fieldName="name" required={true} />
+        <Form.Text form={form} label="Pluralized Name" fieldName="pluralName" required />
+        {hasOtherEntryTypes && (
+          <Form.Select
+            form={form}
+            fieldName="aggregateId"
+            label="Parent"
+            options={entryTypeSelectOptions}
+          />
+        )}
+        <Form.ActionRow form={form} />
+      </Form.Root>
+    </Dialog.Root>
   );
 };
 
-export default EntryTypeForm;
+export default EditEntryTypeForm;

@@ -6,10 +6,7 @@ import EntryTypeDialog from "./_components/EntryTypeDialog";
 import entryTypeActions from "@/actions/entryTypes/entryTypeActions";
 import { EntryType } from "@/types/EntryType";
 import getEntryTypeRelationships from "@/utilities/data/getEntryTypeRelationship";
-import { TbArrowNarrowRight } from "react-icons/tb";
-import RelationshipsPanel from "./_components/RelationshipsPanel";
 import EntryTypePanel from "./_components/EntryTypePanel";
-import EntryPropertyForm from "./_components/EntryPropertyForm";
 
 type ConfigureCollectionPageProps = {
   searchParams: {
@@ -44,7 +41,7 @@ const ConfigureCollectionPage = async ({
 
       <div className="grid grid-cols-2 gap-4">
         {entryTypes.map((entryType) => (
-          <EntryTypePanel key={entryType.id} entryType={entryType} />
+          <EntryTypePanel key={entryType.id} entryType={entryType} entryTypes={entryTypes} />
         ))}
       </div>
     </div>

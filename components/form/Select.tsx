@@ -1,5 +1,5 @@
 "use client"
-import { SelectOption } from "@/types/selectOption";
+import { SelectOption } from "@/types/SelectOption";
 import React from "react";
 import { UseFormReturn } from "react-hook-form";
 
