@@ -8,7 +8,7 @@ const Header = () => {
         <div className='flex flex-col gap-y-2'>
 
             <div className='flex flex-row items-center justify-between gap-x-4'>
-<div></div>
+                <SearchBar />
                 <Logo />
                 <ButtonGroup />
 

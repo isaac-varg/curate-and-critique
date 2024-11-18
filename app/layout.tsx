@@ -32,8 +32,6 @@ export const metadata: Metadata = {
 };
 
 
-
-
 export default async function RootLayout({
     children,
 }: Readonly<{
@@ -48,11 +46,12 @@ export default async function RootLayout({
                 <AuthProvider session={session}>
                     <ContextProviders>
                         <ThemeWrapper>
-                            <div className={`${pacifico.variable} ${geistSans.variable} ${geistMono.variable} antialiased flex flex-row`}>
-                                <Sidebar />
+                            <div className={`${pacifico.variable} ${geistSans.variable} ${geistMono.variable} antialiased flex flex-col pt-8 px-8 gap-y-2 h-screen`}>
 
-                                <div className="pt-8 pr-8 flex flex-col w-full">
-                                    <Header />
+                                <Header />
+                                <div className="pr-8 flex flex-row w-full h-full">
+
+                                    <Sidebar />
                                     <main>{children}</main>
                                 </div>
                             </div>
