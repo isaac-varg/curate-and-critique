@@ -1,0 +1,182 @@
+//🧩Don't Edit this file.✨Generated in Sun Jan 12 2025 01:10:30 GMT-0800 (Pacific Standard Time)✨
+model PropertyType {
+  id                   String               @id @default(uuid())
+  name                 String
+  dataType             String               @map("data_type")
+  createdAt            DateTime             @default(now()) @map("created_at")
+  updatedAt            DateTime             @updatedAt @map("updated_at")
+  entryProperties      EntryProperty[]
+  collectionProperties CollectionProperty[]
+
+  @@map("property_types")
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model CollectionProperty {
+  id             String       @id @default(uuid())
+  collectionId   String       @map("collection_id")
+  propertyTypeId String       @map("property_type_id")
+  name           String
+  description    String?
+  private        Boolean      @default(false)
+  createdAt      DateTime     @default(now()) @map("created_at")
+  updatedAt      DateTime     @updatedAt @map("updated_at")
+  collection     Collection   @relation(fields: [collectionId], references: [id])
+  propertyTypes  PropertyType @relation(fields: [propertyTypeId], references: [id])
+
+  @@map("collection_properties")
+}
+
+model Collection {
+  id                   String               @id @default(uuid())
+  userId               String               @map("user_id")
+  parentId             String?              @map("parent_id")
+  name                 String               @map("name")
+  private              Boolean              @default(false)
+  createdAt            DateTime             @default(now()) @map("created_at")
+  updatedAt            DateTime             @updatedAt @map("updated_at")
+  user                 User                 @relation(fields: [userId], references: [id])
+  parentCollection     Collection?          @relation("CollectionRelationships", fields: [parentId], references: [id])
+  childCollections     Collection[]         @relation("CollectionRelationships")
+  collectionProperties CollectionProperty[]
+  entryProperties      EntryProperty[]
+  entryPropertyGroups  EntryPropertyGroup[]
+
+  @@map("collections")
+}
+
+model Entry {
+  id           String      @id @default(uuid())
+  collectionId String      @map("collection_id")
+  createdAt    DateTime    @default(now()) @map("created_at")
+  updatedAt    DateTime    @updatedAt @map("updated_at")
+  entryData    EntryData[]
+
+  @@map("entries")
+}
+
+model EntryData {
+  id              String        @id @default(uuid())
+  entryId         String        @map("entry_id")
+  entryPropertyId String        @map("entry_property_id")
+  value           String
+  createdAt       DateTime      @default(now()) @map("created_at")
+  updatedAt       DateTime      @updatedAt @map("updated_at")
+  entry           Entry?        @relation(fields: [entryId], references: [id])
+  entryProperty   EntryProperty @relation(fields: [entryPropertyId], references: [id])
+
+  @@map("entry_data")
+}
+
+model EntryProperty {
+  id                   String             @id @default(uuid())
+  collectionId         String             @map("collection_id")
+  propertyTypeId       String             @map("property_type_id")
+  entryPropertyGroupId String             @map("entry_property_group_id")
+  globallyAvailable    Boolean?           @default(false) @map("globally_available")
+  collectionAvailable  Boolean?           @default(true) @map("collection_available")
+  name                 String
+  description          String?
+  createdAt            DateTime           @default(now()) @map("created_at")
+  updatedAt            DateTime           @updatedAt @map("updated_at")
+  collection           Collection         @relation(fields: [collectionId], references: [id])
+  propertyType         PropertyType       @relation(fields: [propertyTypeId], references: [id])
+  entryPropertyGroup   EntryPropertyGroup @relation(fields: [entryPropertyGroupId], references: [id])
+  entryData            EntryData[]
+
+  @@map("entry_properties")
+}
+
+model EntryPropertyGroup {
+  id                String          @id @default(uuid())
+  collecionId       String          @map("collection_id")
+  name              String
+  createdAt         DateTime        @default(now()) @map("created_at")
+  updatedAt         DateTime        @updatedAt @map("updated_at")
+  collection        Collection      @relation(fields: [collecionId], references: [id])
+  groupedProperties EntryProperty[]
+
+  @@map("entry_property_groups")
+}
+
+model Account {
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([provider, providerAccountId])
+  @@map("accounts")
+}
+
+// Optional for WebAuthn support
+model Authenticator {
+  credentialID         String  @unique
+  userId               String
+  providerAccountId    String
+  credentialPublicKey  String
+  counter              Int
+  credentialDeviceType String
+  credentialBackedUp   Boolean
+  transports           String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([userId, credentialID])
+  @@map("authenticators")
+}
+
+model Session {
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("sessions")
+}
+
+model User {
+  id            String          @id @default(cuid())
+  name          String?
+  email         String          @unique
+  emailVerified DateTime?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+  // Optional for WebAuthn support
+  Authenticator Authenticator[]
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+
+  collections Collection[]
+
+  @@map("users")
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@id([identifier, token])
+  @@map("verification_tokens")
+}

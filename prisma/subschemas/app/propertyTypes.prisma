@@ -1,0 +1,11 @@
+model PropertyType {
+    id        String   @id @default(uuid())
+    name      String
+    dataType  String   @map("data_type")
+    createdAt DateTime @default(now()) @map("created_at")
+    updatedAt DateTime @updatedAt @map("updated_at")
+    entryProperties EntryProperty[]
+    collectionProperties CollectionProperty[]
+
+    @@map("property_types")
+}

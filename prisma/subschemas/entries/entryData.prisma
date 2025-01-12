@@ -1,0 +1,12 @@
+model EntryData {
+    id              String        @id @default(uuid())
+    entryId         String        @map("entry_id")
+    entryPropertyId String        @map("entry_property_id")
+    value           String
+    createdAt       DateTime      @default(now()) @map("created_at")
+    updatedAt       DateTime      @updatedAt @map("updated_at")
+    entry           Entry?        @relation(fields: [entryId], references: [id])
+    entryProperty   EntryProperty @relation(fields: [entryPropertyId], references: [id])
+
+    @@map("entry_data")
+}
