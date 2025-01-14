@@ -1,4 +1,4 @@
-//🧩Don't Edit this file.✨Generated in Sun Jan 12 2025 01:10:30 GMT-0800 (Pacific Standard Time)✨
+//🧩Don't Edit this file.✨Generated in Sun Jan 12 2025 18:48:30 GMT-0800 (Pacific Standard Time)✨
 model PropertyType {
   id                   String               @id @default(uuid())
   name                 String
@@ -9,6 +9,10 @@ model PropertyType {
   collectionProperties CollectionProperty[]
 
   @@map("property_types")
+}
+
+generator client {
+  provider = "prisma-client-js"
 }
 
 datasource db {
@@ -154,6 +158,18 @@ model Session {
   @@map("sessions")
 }
 
+model UserConfig {
+  id                 String   @id @default(uuid())
+  userId             String   @unique @map("user_id")
+  isSidebarCollapsed Boolean  @map("is_sidebar_collapsed")
+  activeTheme        String   @map("active_theme")
+  createdAt          DateTime @default(now()) @map("created_at")
+  updatedAt          DateTime @updatedAt @map("updated_at")
+  user               User     @relation(fields: [userId], references: [id])
+
+  @@map("user_configs")
+}
+
 model User {
   id            String          @id @default(cuid())
   name          String?
@@ -168,6 +184,7 @@ model User {
   updatedAt     DateTime        @updatedAt
 
   collections Collection[]
+  userConfigs UserConfig[]
 
   @@map("users")
 }

@@ -3,11 +3,11 @@ import AppContextProvider from "./AppContext";
 
 const ContextProviders = ({ children }: { children: React.ReactNode }) => {
 
-        return (
-                <AppContextProvider>
-                        {children}
-                </AppContextProvider>
-        )
+    return (
+        <AppContextProvider>
+            {children}
+        </AppContextProvider>
+    )
 }
 
 export default ContextProviders;

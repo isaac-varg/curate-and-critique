@@ -1,10 +1,11 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import useApp from "~/hooks/useApp";
 
 const ThemeWrapper = ({ children }: { children: React.ReactNode }) => {
     const [mounted, setMounted] = useState(false);
-
+    const { activeTheme } = useApp()
 
 
     // use effect only runs on the client,
@@ -18,7 +19,7 @@ const ThemeWrapper = ({ children }: { children: React.ReactNode }) => {
     }
 
     return (
-        <html data-theme={"light"} >
+        <html data-theme={activeTheme} >
                 {children}
         </html>
     )

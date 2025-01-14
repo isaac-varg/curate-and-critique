@@ -12,6 +12,7 @@ model User {
     updatedAt     DateTime        @updatedAt
 
     collections Collection[]
+    userConfigs UserConfig[]
 
     @@map("users")
 }

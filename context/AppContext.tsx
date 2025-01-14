@@ -4,6 +4,7 @@ import React, { useState, createContext } from "react"
 
 interface AppState {
     isSidebarCollapsed: boolean;
+    activeTheme: string; 
 }
 
 interface AppProps extends AppState {
@@ -16,11 +17,13 @@ type AppContextProps = {
 
 export const AppContext = createContext<AppProps>({
     isSidebarCollapsed: false,
+    activeTheme: "dark" ,
     setAppState: () => { },
 })
 
 export const AppContextDefaults = {
     isSidebarCollapsed: false,
+    activeTheme: "dark"
 }
 
 export const AppContextProvider = ({ children }: AppContextProps) => {

@@ -1,4 +1,5 @@
-import { useRouter } from 'next/router';
+"use client"
+import { useRouter } from 'next/navigation';
 import React from 'react'
 
 type SidebarButtonProps = {
@@ -14,7 +15,7 @@ const SidebarButton = ({ children, path }: SidebarButtonProps) => {
     }
 
     return (
-        <button onClick={handleClick} className='btn'>
+        <button onClick={handleClick} className='btn flex items-center justify-start bg-base-300'>
             {children}
         </button>
     )
