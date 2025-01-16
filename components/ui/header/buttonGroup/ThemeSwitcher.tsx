@@ -1,7 +1,6 @@
 "use client"
 import { TbColorSwatch } from "react-icons/tb"
 import { setTheme } from "~/actions/app/setTheme";
-import useApp from "~/hooks/useApp";
 import config from "~/tailwind.config"
 
 const ThemeSwitcher = () => {

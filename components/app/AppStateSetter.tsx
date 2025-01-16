@@ -1,27 +1,24 @@
 "use client"
 
-import { useEffect } from "react";
-import { getConfigs } from "~/actions/user/getConfigs";
-import useApp from "~/hooks/useApp";
+import { UserConfig } from "@prisma/client";
+import { useAppActions, useTheme } from "~/store/appStore";
+import { Theme } from "~/types/Theme";
 
 // probably not the right way to handle this, but it is the solution i came up with
 
-
-const AppStateSetter = () => {
-
-    const { setTheme } = useApp()
-
-    useEffect(() => {
-        const runConfigGetter = async () => {
-            const configs = await getConfigs()
+type AppStateSetterProps = {
+    configs: UserConfig
+}
 
 
-            //theme
-            setTheme(configs.activeTheme)
-        }
+const AppStateSetter = ({ configs } : AppStateSetterProps) => {
 
-        runConfigGetter()
-    }, [])
+    const { setTheme } = useAppActions()
+
+    const { activeTheme } = configs
+
+    setTheme(activeTheme as Theme)
+
     return null;
 }
 

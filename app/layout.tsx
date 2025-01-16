@@ -4,7 +4,6 @@ import { Pacifico } from "next/font/google";
 import "./globals.css";
 import { auth } from "~/auth";
 import { AuthProvider } from "~/components/app/AuthContext";
-import ContextProviders from "~/context/ContextProviders";
 import Sidebar from "~/components/ui/sidebar/Sidebar";
 import ThemeWrapper from "~/components/ui/theme/ThemeWrapper";
 import Header from "~/components/ui/header/Header";
@@ -44,7 +43,6 @@ export default async function RootLayout({
         <html lang="en">
             <body>
                 <AuthProvider session={session}>
-                    <ContextProviders>
                         <ThemeWrapper>
                             <div className={`${pacifico.variable} ${geistSans.variable} ${geistMono.variable} antialiased flex flex-col pt-8 px-8 gap-y-2 h-screen`}>
 
@@ -56,7 +54,6 @@ export default async function RootLayout({
                                 </div>
                             </div>
                         </ThemeWrapper>
-                    </ContextProviders>
                 </AuthProvider>
             </body>
         </html>

@@ -2,7 +2,6 @@
 import { signIn, useSession } from 'next-auth/react'
 import { redirect } from 'next/navigation'
 import React from 'react'
-import AppStateSetter from '~/components/app/AppStateSetter'
 
 const Avatar = () => {
 
@@ -17,8 +16,6 @@ const Avatar = () => {
     return (
 
         <div className="dropdown dropdown-end">
-
-            <AppStateSetter />
 
             <div tabIndex={0} role="button" >
                 <div className="avatar hover:cursor-pointer">
