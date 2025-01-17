@@ -1,15 +1,14 @@
 "use client"
 import { TbColorSwatch } from "react-icons/tb"
 import { setTheme } from "~/actions/app/setTheme";
+import { themes } from "~/constants/themes";
 import config from "~/tailwind.config"
 
 const ThemeSwitcher = () => {
 
-    const themes: string[] = config.daisyui.themes;
 
     const handleThemeSwitch = async (theme: string) => {
-       await setTheme(theme) 
-
+        await setTheme(theme)
     }
 
     return (
