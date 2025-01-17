@@ -1,17 +1,15 @@
 import React from 'react'
-import { getCollections } from './_functions/getCollections'
-import Sad from '~/components/ui/reactions/Sad'
+import { getCollections } from '~/actions/collection/getCollections'
+import NoCollections from './_components/NoCollections'
 
 const CollectionsPage = async () => {
 
     const collections = await getCollections()
 
-
-
     return (
-        <div className='w-full'>
-            {collections.length === 0 && <Sad />}
-        </div>
+        <>
+            {collections.length === 0 && <NoCollections />}
+        </>
     )
 }
 

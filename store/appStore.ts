@@ -10,7 +10,9 @@ type Actions = {
         setTheme: (themeName: Theme) => void;
     };
 
-}; const useAppStore = create<State & Actions>((set) => ({
+};
+
+const useAppStore = create<State & Actions>((set) => ({
     theme: "dark",
 
     actions: {

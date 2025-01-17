@@ -50,7 +50,9 @@ export default async function RootLayout({
                                 <div className="pr-8 flex flex-row w-full h-full">
 
                                     <Sidebar />
-                                    <main>{children}</main>
+                                    <div className="flex flex-col w-full ">
+                                    {children}
+                                    </div>
                                 </div>
                             </div>
                         </ThemeWrapper>

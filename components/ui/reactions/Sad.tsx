@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import sadCat from "~/assets/art/sad-cat.svg"
 
 type SadProps = {
     alt?: string

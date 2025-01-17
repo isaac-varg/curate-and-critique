@@ -6,7 +6,7 @@ const layout = ({ children }: { children: React.ReactNode }) => {
         <div className='flex flex-col gap-y-2'>
             <Breadcrumbs />
 
-            <div>{children}</div>
+            {children}
         </div>
     )
 }
