@@ -1,8 +1,12 @@
 import React from 'react'
+import CollectionForm from './_components/CollectionForm'
 
 const AddCollecionPage = () => {
+
   return (
-    <div>AddCollecionPage</div>
+    <div>
+        <CollectionForm />
+    </div>
   )
 }
 

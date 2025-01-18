@@ -43,19 +43,19 @@ export default async function RootLayout({
         <html lang="en">
             <body>
                 <AuthProvider session={session}>
-                        <ThemeWrapper>
-                            <div className={`${pacifico.variable} ${geistSans.variable} ${geistMono.variable} antialiased flex flex-col pt-8 px-8 gap-y-2 h-screen`}>
+                    <ThemeWrapper>
+                        <div className={`${pacifico.variable} ${geistSans.variable} ${geistMono.variable} antialiased flex flex-col pt-8 px-8 gap-y-2 h-screen`}>
 
-                                <Header />
-                                <div className="pr-8 flex flex-row w-full h-full">
+                            <Header />
+                            <div className="pr-8 flex flex-row w-full h-full">
 
-                                    <Sidebar />
-                                    <div className="flex flex-col w-full ">
+                                <Sidebar />
+                                <div className="flex flex-col w-full ">
                                     {children}
-                                    </div>
                                 </div>
                             </div>
-                        </ThemeWrapper>
+                        </div>
+                    </ThemeWrapper>
                 </AuthProvider>
             </body>
         </html>
