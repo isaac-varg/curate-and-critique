@@ -44,13 +44,13 @@ export default async function RootLayout({
             <body>
                 <AuthProvider session={session}>
                     <ThemeWrapper>
-                        <div className={`${pacifico.variable} ${geistSans.variable} ${geistMono.variable} antialiased flex flex-col pt-8 px-8 gap-y-2 h-screen`}>
+                        <div className={`${pacifico.variable} ${geistSans.variable} ${geistMono.variable} antialiased flex flex-col py-8 px-10 gap-y-2 h-screen `}>
 
                             <Header />
-                            <div className="pr-8 flex flex-row w-full h-full">
+                            <div className="flex flex-row w-full h-full">
 
                                 <Sidebar />
-                                <div className="flex flex-col w-full ">
+                                <div className="flex flex-col h-full w-full ">
                                     {children}
                                 </div>
                             </div>

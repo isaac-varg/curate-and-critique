@@ -10,7 +10,7 @@ const Sidebar = async () => {
     const collections = await getCollections()
 
     return (
-        <aside className='h-full pr-8 pb-8'>
+        <aside className='h-full pr-8 '>
             <div className='h-full w-64 rounded-xl bg-base-200 flex flex-col px-2 py-8'>
 
                 <div className='flex flex-col gap-y-24'>

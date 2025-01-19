@@ -19,7 +19,7 @@ const ThemeWrapper = ({ children }: { children: React.ReactNode }) => {
 
     return (
         <html data-theme={theme ?? 'dark'} >
-                {children}
+            {children}
         </html>
     )
 }

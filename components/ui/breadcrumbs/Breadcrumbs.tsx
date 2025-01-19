@@ -44,7 +44,7 @@ const Breadcrumbs = () => {
                 {segments.map((s, index) => {
                     if (index === 0) { return null }
                     return (
-                        <li><a onClick={() => handleClick(index)}>{s}</a></li>
+                        <li key={s}><a onClick={() => handleClick(index)}>{s}</a></li>
                     )
                 })}
 

@@ -6,15 +6,14 @@ import AppStateGetter from '~/components/app/AppStateGetter'
 
 const Header = async () => {
     return (
-        <div className='flex flex-col gap-y-2'>
+
+        <div className='flex flex-row items-center justify-between'>
+
             <AppStateGetter />
+            <SearchBar />
+            <Logo />
+            <ButtonGroup />
 
-            <div className='flex flex-row items-center justify-between gap-x-4'>
-                <SearchBar />
-                <Logo />
-                <ButtonGroup />
-
-            </div>
         </div>
     )
 }

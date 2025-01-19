@@ -1,4 +1,4 @@
-//🧩Don't Edit this file.✨Generated in Sun Jan 12 2025 18:48:30 GMT-0800 (Pacific Standard Time)✨
+//🧩Don't Edit this file.✨Generated in Sat Jan 18 2025 21:35:26 GMT-0800 (Pacific Standard Time)✨
 model PropertyType {
   id                   String               @id @default(uuid())
   name                 String

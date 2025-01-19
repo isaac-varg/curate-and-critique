@@ -17,7 +17,7 @@ const FormRoot = <T extends FieldValues>({
 }: FormRootProps<T>) => {
     return (
         <form onSubmit={form.handleSubmit(onSubmit)}>
-            <div className="flex flex-col gap-y-4">{children}</div>
+            <div className="flex flex-col gap-y-6">{children}</div>
         </form>
     );
 };

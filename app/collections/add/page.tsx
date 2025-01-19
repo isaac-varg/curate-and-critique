@@ -4,7 +4,7 @@ import CollectionForm from './_components/CollectionForm'
 const AddCollecionPage = () => {
 
   return (
-    <div>
+    <div className='flex flex-col h-full'>
         <CollectionForm />
     </div>
   )
