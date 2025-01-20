@@ -14,6 +14,7 @@
     "@auth/prisma-adapter": "^2.7.4",
     "@next/font": "^14.2.15",
     "@prisma/client": "^6.2.1",
+    "@radix-ui/react-toast": "^1.2.4",
     "@tailwindcss/postcss": "^4.0.0-beta.9",
     "@tailwindcss/typography": "^0.5.15",
     "next": "14.2.14",

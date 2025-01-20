@@ -37,7 +37,7 @@ const Sidebar = async () => {
                         {collections.length === 0 && <SidebarButton path='/collections'>(ಥ﹏ಥ) sadge, nothing here</SidebarButton>}
 
 
-                        {collections.map((collection) => <SidebarButton path={`/collections/${collection.name}?id${collection.id}`} >{collection.name}</SidebarButton>)}
+                        {collections.map((collection) => <SidebarButton path={`/collections/${collection.name}?id=${collection.id}`} >{collection.name}</SidebarButton>)}
 
                     </SidebarGroup>
 

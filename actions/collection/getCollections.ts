@@ -14,3 +14,10 @@ export const getCollections = async () => {
 
     return collections;
 }
+
+
+// extract the inferred type
+type CollectionsResponseType = Awaited<ReturnType<typeof getCollections>>;
+
+export type Collection = CollectionsResponseType[number];
+

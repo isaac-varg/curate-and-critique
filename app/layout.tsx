@@ -4,9 +4,11 @@ import { Pacifico } from "next/font/google";
 import "./globals.css";
 import { auth } from "~/auth";
 import { AuthProvider } from "~/components/app/AuthContext";
+import {Provider as ToastProvider} from "@radix-ui/react-toast";
 import Sidebar from "~/components/ui/sidebar/Sidebar";
 import ThemeWrapper from "~/components/ui/theme/ThemeWrapper";
 import Header from "~/components/ui/header/Header";
+import ToastRoot from "~/components/toast/ToastRoot";
 
 const geistSans = localFont({
     src: "./fonts/GeistVF.woff",
@@ -44,6 +46,7 @@ export default async function RootLayout({
             <body>
                 <AuthProvider session={session}>
                     <ThemeWrapper>
+                        <ToastRoot />
                         <div className={`${pacifico.variable} ${geistSans.variable} ${geistMono.variable} antialiased flex flex-col py-8 px-10 gap-y-2 h-screen `}>
 
                             <Header />
