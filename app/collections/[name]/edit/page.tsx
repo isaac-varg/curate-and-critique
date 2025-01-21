@@ -3,6 +3,7 @@ import { CollectionActions } from '~/actions/collection'
 import { ServerComponentProps } from '~/types/ServerComponentProps'
 import ConfigTitleBar from './_components/ConfigTitleBar'
 import BasicsPanel from './_components/BasicsPanel'
+import PropertiesPanel from './_components/PropertiesPanel'
 
 const EditCollectionPage = async ({ searchParams }: ServerComponentProps) => {
 
@@ -13,6 +14,8 @@ const EditCollectionPage = async ({ searchParams }: ServerComponentProps) => {
             <ConfigTitleBar collectionName={collection.name} />
 
             <BasicsPanel collection={collection} />
+
+            <PropertiesPanel />
              
         </div>
     )
