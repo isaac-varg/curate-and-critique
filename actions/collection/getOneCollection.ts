@@ -12,7 +12,6 @@ export const getOneCollection = async ( collectionId: string ) => {
             id: collectionId, 
         },
         include: {
-            parentCollection: true,
             collectionProperties: {
                 include: {
                     propertyTypes: true

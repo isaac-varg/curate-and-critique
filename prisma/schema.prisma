@@ -1,4 +1,4 @@
-//🧩Don't Edit this file.✨Generated in Sat Jan 18 2025 21:35:26 GMT-0800 (Pacific Standard Time)✨
+//🧩Don't Edit this file.✨Generated in Mon Jan 20 2025 19:48:15 GMT-0800 (Pacific Standard Time)✨
 model PropertyType {
   id                   String               @id @default(uuid())
   name                 String
@@ -38,14 +38,11 @@ model CollectionProperty {
 model Collection {
   id                   String               @id @default(uuid())
   userId               String               @map("user_id")
-  parentId             String?              @map("parent_id")
   name                 String               @map("name")
   private              Boolean              @default(false)
   createdAt            DateTime             @default(now()) @map("created_at")
   updatedAt            DateTime             @updatedAt @map("updated_at")
   user                 User                 @relation(fields: [userId], references: [id])
-  parentCollection     Collection?          @relation("CollectionRelationships", fields: [parentId], references: [id])
-  childCollections     Collection[]         @relation("CollectionRelationships")
   collectionProperties CollectionProperty[]
   entryProperties      EntryProperty[]
   entryPropertyGroups  EntryPropertyGroup[]
@@ -81,10 +78,9 @@ model EntryProperty {
   collectionId         String             @map("collection_id")
   propertyTypeId       String             @map("property_type_id")
   entryPropertyGroupId String             @map("entry_property_group_id")
-  globallyAvailable    Boolean?           @default(false) @map("globally_available")
-  collectionAvailable  Boolean?           @default(true) @map("collection_available")
   name                 String
   description          String?
+  isAggregator         Boolean
   createdAt            DateTime           @default(now()) @map("created_at")
   updatedAt            DateTime           @updatedAt @map("updated_at")
   collection           Collection         @relation(fields: [collectionId], references: [id])

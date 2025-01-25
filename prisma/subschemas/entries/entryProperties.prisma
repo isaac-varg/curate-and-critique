@@ -1,18 +1,17 @@
 model EntryProperty {
-    id                   String   @id @default(uuid())
-    collectionId         String   @map("collection_id")
-    propertyTypeId       String   @map("property_type_id")
-    entryPropertyGroupId String   @map("entry_property_group_id")
-    globallyAvailable    Boolean? @default(false) @map("globally_available")
-    collectionAvailable  Boolean? @default(true) @map("collection_available")
+    id                   String             @id @default(uuid())
+    collectionId         String             @map("collection_id")
+    propertyTypeId       String             @map("property_type_id")
+    entryPropertyGroupId String             @map("entry_property_group_id")
     name                 String
     description          String?
-    createdAt            DateTime @default(now()) @map("created_at")
-    updatedAt            DateTime @updatedAt @map("updated_at")
-    collection Collection @relation(fields: [collectionId], references: [id])
-    propertyType PropertyType @relation(fields: [propertyTypeId], references: [id])
-    entryPropertyGroup EntryPropertyGroup @relation(fields: [entryPropertyGroupId], references: [id])
-    entryData EntryData[]
+    isAggregator         Boolean
+    createdAt            DateTime           @default(now()) @map("created_at")
+    updatedAt            DateTime           @updatedAt @map("updated_at")
+    collection           Collection         @relation(fields: [collectionId], references: [id])
+    propertyType         PropertyType       @relation(fields: [propertyTypeId], references: [id])
+    entryPropertyGroup   EntryPropertyGroup @relation(fields: [entryPropertyGroupId], references: [id])
+    entryData            EntryData[]
 
     @@map("entry_properties")
 }

@@ -1,14 +1,11 @@
 model Collection {
     id                   String               @id @default(uuid())
     userId               String               @map("user_id")
-    parentId             String?              @map("parent_id")
     name                 String               @map("name")
     private              Boolean              @default(false)
     createdAt            DateTime             @default(now()) @map("created_at")
     updatedAt            DateTime             @updatedAt @map("updated_at")
     user                 User                 @relation(fields: [userId], references: [id])
-    parentCollection     Collection?          @relation("CollectionRelationships", fields: [parentId], references: [id])
-    childCollections     Collection[]         @relation("CollectionRelationships")
     collectionProperties CollectionProperty[]
     entryProperties EntryProperty[]
     entryPropertyGroups EntryPropertyGroup[]
