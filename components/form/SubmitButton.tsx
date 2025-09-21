@@ -1,16 +1,28 @@
+import { useStore } from "@tanstack/react-form"
+import { useFormContext } from "."
 
 type SubmitButtonProps = {
-  label?: string
+  children?: React.ReactNode
 }
 
-const SubmitButton = ({ label = 'Save' }: SubmitButtonProps) => {
+const SubmitButton = ({ children }: SubmitButtonProps) => {
+
+  const form = useFormContext()
+
+
+  const [isSubmitting, canSubmit, isDirty] = useStore(form.store, (state) => [
+    state.isSubmitting,
+    state.canSubmit,
+    state.isDirty
+  ])
 
   return (
     <button
       type="submit"
-      className="btn btn-success"
+      disabled={isSubmitting || !canSubmit || !isDirty}
+      className={`btn ${(isSubmitting || !canSubmit || !isDirty) ? 'btn-disabled' : 'btn-success'}`}
     >
-      {label}
+      {children ? children : "Save"}
     </button>
   )
 }

@@ -31,7 +31,7 @@ export default function RootLayout({
       >
         <main className="flex flex-row bg-base-200 min-h-screen px-6 py-8">
           <Sidebar />
-          <div className="px-12 flex flex-col gap-8">
+          <div className="px-12 flex flex-col gap-8 w-full">
             <Breadcrumbs />
             {children}
           </div>

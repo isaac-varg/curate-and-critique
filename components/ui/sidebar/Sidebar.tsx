@@ -1,14 +1,13 @@
 'use client'
 import { useAppSelection } from "@/store/appSlice";
 import { motion, Variants } from "motion/react"
-import Brand from "./Brand";
 import MenuButtons from "./MenuButtons";
 import Top from "./Top";
-import CollapseToggleButton from "./CollapseToggleButton";
+import MainNav from "./MainNav";
+
 const Sidebar = () => {
 
   const { isSidebarCollapsed } = useAppSelection();
-
 
   const sidebarVariants: Variants = {
     expanded: {
@@ -35,6 +34,8 @@ const Sidebar = () => {
     >
       <div className="flex flex-col gap-y-6">
         <Top />
+
+        <MainNav />
       </div>
 
       <div className="flex items-center justify-center">
